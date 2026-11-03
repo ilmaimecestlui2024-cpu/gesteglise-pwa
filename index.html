@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0B1F4D"><meta name="mobile-web-app-capable" content="yes">
+<title>GestÉglise Pro</title>
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="icon-192.png">
+<style>
+:root{--bg:#EEF3FB;--c:#fff;--tx:#0F172A;--mu:#64748B;--b:#1D5FD6;--n:#0B1F4D;--g:#F59E0B;--ok:#10B981;--ko:#EF4444;--ln:#E2E8F0;box-sizing:border-box}
+@media(prefers-color-scheme:dark){:root{--bg:#070F24;--c:#13213F;--tx:#F1F5F9;--mu:#94A3B8;--ln:#24365C}}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}body{margin:0;background:var(--bg);color:var(--tx);font:15px system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+#app{max-width:480px;margin:auto;min-height:100dvh;overflow:hidden}.scr{min-height:100dvh;display:flex;flex-direction:column;padding-bottom:78px;background:var(--bg)}
+.in{animation:in .35s cubic-bezier(.2,.8,.2,1)}.inl{animation:inl .35s cubic-bezier(.2,.8,.2,1)}@keyframes in{from{opacity:0;transform:translateX(30px)}}@keyframes inl{from{opacity:0;transform:translateX(-30px)}}
+.ic{width:1.3em;height:1.3em;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;vertical-align:middle}
+.hd{background:var(--n);color:#fff;padding:calc(14px + env(safe-area-inset-top)) 16px 16px;border-radius:0 0 22px 22px;display:flex;align-items:center;gap:10px;font-weight:700;font-size:17px}
+.ib{background:#ffffff22;border:0;color:#fff;width:36px;height:36px;border-radius:12px;font-size:18px}.bd{padding:14px;flex:1}
+.card{background:var(--c);border:1px solid var(--ln);border-radius:16px;padding:14px;margin-bottom:10px;box-shadow:0 2px 8px #0b1f4d10}
+.btn{display:block;width:100%;border:0;border-radius:99px;background:var(--b);color:#fff;padding:13px;font-weight:600;font-size:15px;margin:8px 0;cursor:pointer;transition:transform .15s}.btn:active{transform:scale(.97)}
+.btn.o{background:var(--c);color:var(--b);border:1.5px solid var(--b)}.btn.g{background:var(--g);color:var(--n)}
+input,select{width:100%;padding:12px;border:1px solid var(--ln);border-radius:14px;background:var(--c);color:var(--tx);font-size:15px;margin:4px 0 8px}
+h1,h2,h3{margin:8px 0}.mu{color:var(--mu);font-size:13px}.c{text-align:center}.er{color:var(--ko);font-size:13px;min-height:18px}a{color:var(--b);font-weight:700;cursor:pointer}
+.big{font-size:54px;color:var(--b)}.scr.dk{background:linear-gradient(170deg,#06122E,#0A3FA0);color:#fff;justify-content:center;align-items:center;text-align:center}.scr.dk .big{color:#fff;animation:pl 2s infinite}@keyframes pl{50%{transform:scale(1.08)}}
+.rc{display:flex;justify-content:space-between;align-items:center;text-align:left;border-radius:16px;padding:18px;margin:10px 0;cursor:pointer;transition:opacity .4s,transform .15s;box-shadow:0 4px 12px #0b1f4d22}.rc small{display:block;opacity:.8;margin-top:2px}.rc:active{transform:scale(.98)}
+.rc.b{background:var(--b);color:#fff}.rc.c{background:var(--c);border:1px solid var(--ln)}.rc.n{background:var(--n);color:#fff}.lock{opacity:.35;pointer-events:none}
+.ch{display:inline-block;padding:3px 9px;border-radius:99px;font-size:11px;font-weight:700;background:#1D5FD622;color:var(--b)}.ch.pr{background:var(--b);color:#fff}.ch.ok{background:#10B98122;color:var(--ok)}.ch.ko{background:#EF444422;color:var(--ko)}.ch.wa{background:#F59E0B33;color:#B45309}
+.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;display:flex;background:var(--c);border-top:1px solid var(--ln);padding-bottom:env(safe-area-inset-bottom)}
+.nav button{flex:1;border:0;background:none;color:var(--mu);padding:8px 2px;font-size:10px;display:flex;flex-direction:column;align-items:center;gap:2px}.nav button.on{color:var(--b);font-weight:700}.nav .ic{font-size:20px}
+.row{display:flex;gap:8px;align-items:center}.row>*{margin:0}.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.ct{text-align:center}.ct .n{font-size:28px;font-weight:700;color:var(--b)}
+.hero{background:var(--n);color:#fff}.av{width:42px;height:42px;border-radius:50%;background:var(--g);color:var(--n);font-weight:700;display:flex;align-items:center;justify-content:center;flex:none}
+.qrb{width:210px;margin:10px auto;background:#fff;padding:6px;border-radius:12px;min-height:60px}.qrb svg{width:100%;height:auto;display:block}.qrc{text-align:center;background:linear-gradient(135deg,#0B1F4D,#1D5FD6);color:#fff}.qrc .mu{color:#cbd5e1}
+.mod{position:fixed;inset:0;background:#0009;display:flex;align-items:center;justify-content:center;padding:20px;z-index:9}.chs{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0}.chs .ch{cursor:pointer;padding:6px 12px}.chs .ch.on{background:var(--b);color:#fff}
+.cam{position:relative;border-radius:18px;overflow:hidden;background:#111;height:280px}.cam video{width:100%;height:100%;object-fit:cover}.fr{position:absolute;inset:50px;border:3px solid #38BDF8;border-radius:22px;overflow:hidden}.fr i{position:absolute;left:6px;right:6px;height:3px;background:#38BDF8;box-shadow:0 0 12px #38BDF8;animation:sc 1.8s ease-in-out infinite alternate}@keyframes sc{from{top:5%}to{top:92%}}
+.fb{border-radius:16px;padding:14px;margin-top:10px;font-weight:700;animation:in .3s}.fb.ok{background:#10B98122;color:var(--ok)}.fb.wa{background:#F59E0B33;color:#B45309}.fb.ko{background:#EF444422;color:var(--ko)}
+.bar{height:8px;background:var(--ln);border-radius:9px;overflow:hidden;margin:8px 0}.bar i{display:block;height:100%;background:var(--ok)}.row{flex-wrap:wrap}.ch a{margin-left:4px}</style></head><body>
+<svg width="0" height="0" style="position:absolute"><defs>
+<symbol id="i-church" viewBox="0 0 24 24"><path d="M12 2v5M9.5 4.5h5M12 7 6 11v10h12V11z"/><path d="M10 21v-5h4v5M2 21h20"/></symbol>
+<symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></symbol>
+<symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></symbol>
+<symbol id="i-qr" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM21 14v3M17 21h4"/></symbol>
+<symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
+<symbol id="i-scan" viewBox="0 0 24 24"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M4 12h16"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></symbol>
+<symbol id="i-key" viewBox="0 0 24 24"><circle cx="7.5" cy="15.5" r="4.5"/><path d="m10.7 12.3 9.3-9.3M16 7l3 3"/></symbol>
+<symbol id="i-wallet" viewBox="0 0 24 24"><path d="M19 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0 0 4h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5"/><path d="M16 13.5h.01"/></symbol>
+<symbol id="i-back" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></symbol>
+</defs></svg>
+<div id="app"></div>
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+<script>
+"use strict";
+const $=s=>document.querySelector(s),app=$('#app'),esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const I=n=>`<svg class="ic"><use href="#i-${n}"/></svg>`,enc=new TextEncoder();
+const hex=b=>[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');
+const rnd=n=>hex(crypto.getRandomValues(new Uint8Array(n)));
+/* ---------- Données (stockées sur le téléphone) ---------- */
+let D={space:null,sess:null,workers:[],programs:[],codes:[],att:[],pin:null,key:null,mins:[],pay:[],church:{name:'Mon Église'}};
+try{Object.assign(D,JSON.parse(localStorage.getItem('gep')||'{}'))}catch(e){}
+if(!D.key)D.key=rnd(32);D.workers.forEach(w=>{if(!w.mis)w.mis=w.mi?[w.mi]:[]});
+const save=()=>{try{localStorage.setItem('gep',JSON.stringify(D))}catch(e){}};save();
+/* ---------- Sécurité : PIN (PBKDF2) et QR signé (HMAC) ---------- */
+async function pbk(pin,salt){const k=await crypto.subtle.importKey('raw',enc.encode(pin),'PBKDF2',false,['deriveBits']);return hex(await crypto.subtle.deriveBits({name:'PBKDF2',hash:'SHA-256',salt:enc.encode(salt),iterations:120000},k,256))}
+async function sig(id){const k=await crypto.subtle.importKey('raw',enc.encode(D.key),{name:'HMAC',hash:'SHA-256'},false,['sign']);return hex(await crypto.subtle.sign('HMAC',k,enc.encode(id))).slice(0,10)}
+async function qrTo(sel,id){const el=$(sel);if(!el)return;if(!window.qrcode){el.textContent='QR indisponible : ouvrez l’app une fois en ligne.';return}const q=qrcode(0,'M');q.addData(id+'|'+await sig(id));q.make();el.innerHTML=q.createSvgTag(5,2)}
+/* ---------- Constantes et aides ---------- */
+const MIN=['Chorale / Louange','Protocole & Accueil','Évangélisation','Multimédia / Sonorisation','École du Dimanche','Intercession'],RESP=['Membre actif','Diacre','Responsable de département','Pasteur'];
+const ST={ACTIF:'Actif',INACTIF:'Inactif',EN_CONGE:'En congé'},SC={ACTIF:'ok',INACTIF:'ko',EN_CONGE:'wa'},SPN={w:'Ouvrier / Ouvrière',a:'Administrateur',s:'Super Admin'};
+const nm=w=>esc(w.fn+' '+w.ln),ini=w=>esc((w.fn[0]+w.ln[0]).toUpperCase()),me=()=>D.sess&&D.workers.find(x=>x.id===D.sess.id);
+const dt=ms=>new Date(ms).toLocaleString('fr-FR',{weekday:'short',day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'});
+const hd=(t,b=1)=>`<div class="hd">${b?`<button class="ib" data-a="back">${I('back')}</button>`:''}<span style="flex:1">${t}</span></div>`;
+const nav=(it,cur,a)=>`<div class="nav">${it.map(([k,l,i])=>`<button class="${k===cur?'on':''}" data-a="${a}" data-k="${k}">${I(i)}<span>${l}</span></button>`).join('')}</div>`;
+const codeOK=c=>{const x=D.codes.find(k=>k.c===c);return !!x&&!x.rev&&(!x.exp||Date.now()<=x.exp)};
+const cs=c=>c.rev?['Révoqué','ko']:(c.exp&&Date.now()>c.exp)?['Expiré','wa']:(c.max&&c.u>=c.max)?['Épuisé','wa']:['Actif','ok'];
+/* ---------- Navigation ---------- */
+let V='splash',H=[],T={},DIR='r',DP=null,cam=null,L={raw:'',t:0},tries=0,lockUntil=0;
+function go(v,o={}){stopCam();if(!o.back&&!o.rep&&V!==v){H.push(V);history.pushState({},'')}DIR=o.back?'l':'r';V=v;if(o.t)Object.assign(T,o.t);draw()}
+function reset(v,t={}){H=[];T=t;DIR='r';V=v;draw()}
+function back(){const p=H.pop();if(p)go(p,{back:1})}
+addEventListener('popstate',()=>{if(H.length)back();else history.pushState({},'')});
+addEventListener('beforeinstallprompt',e=>{e.preventDefault();DP=e;if(V==='role')draw()});
+function draw(){app.innerHTML=VIEWS[V]();const e=app.firstElementChild;e.classList.add(DIR==='l'?'inl':'in');
+ if(V==='whome'&&(T.wt||'qr')==='qr'){const w=me();w&&qrTo('#qr',w.id)}if(V==='ahome'&&T.at==='scan')startCam()}
+function toast(m){document.body.insertAdjacentHTML('beforeend',`<div class="fb ok" id="ts" style="position:fixed;left:16px;right:16px;bottom:90px;max-width:448px;margin:auto;z-index:20;background:var(--n);color:#fff">${esc(m)}</div>`);setTimeout(()=>{const t=$('#ts');t&&t.remove()},2600)}
+function modal(h){document.body.insertAdjacentHTML('beforeend',`<div class="mod"><div class="card c" style="width:100%;max-width:360px">${h}<button class="btn o" data-a="x">Fermer</button></div></div>`)}
+/* ---------- Caméra et pointage ---------- */
+function fb(k,t,s){const e=$('#fb');if(e){e.innerHTML=`<div class="fb ${k}">${esc(t)}<div style="font-weight:400">${esc(s)}</div></div>`;setTimeout(()=>{const f=$('#fb');f&&(f.innerHTML='')},2800)}try{navigator.vibrate&&navigator.vibrate(k==='ok'?60:[60,40,60])}catch(e){}}
+async function onQR(raw){if(raw===L.raw&&Date.now()-L.t<3000)return;L.raw=raw;L.t=Date.now();const[id,s]=raw.split('|');
+ if(!id||!s||s!==await sig(id))return fb('ko','QR invalide','Ce badge n’est pas reconnu');const w=D.workers.find(x=>x.id===id);if(!w)return fb('ko','QR invalide','Ouvrier introuvable');
+ if(w.st==='INACTIF')return fb('ko',w.fn+' '+w.ln,'Compte inactif — présence refusée');const p=D.programs.find(x=>x.act);if(!p)return fb('ko','Aucun programme actif','Activez un programme avant de scanner');
+ if(D.att.some(a=>a.p===p.id&&a.w===id))return fb('wa',w.fn+' '+w.ln,'Déjà pointé pour ce programme');
+ const late=Date.now()>p.at+15*60000;D.att.push({p:p.id,w:id,st:late?'LATE':'PRESENT',t:Date.now()});save();fb(late?'wa':'ok',w.fn+' '+w.ln,late?'En retard — présence enregistrée':'Présent — présence enregistrée')}
+async function startCam(){const m=$('#cm');if(!navigator.mediaDevices||!window.jsQR){m.textContent='Caméra ou lecteur QR indisponible (HTTPS et connexion initiale requis).';return}
+ try{const st=await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}}),v=$('#vid');if(!v){st.getTracks().forEach(t=>t.stop());return}v.srcObject=st;await v.play();cam={st,run:true};
+ const c=document.createElement('canvas'),x=c.getContext('2d',{willReadFrequently:true});
+ (function tick(){if(!cam||!cam.run)return;if(v.videoWidth){c.width=v.videoWidth;c.height=v.videoHeight;x.drawImage(v,0,0);const r=jsQR(x.getImageData(0,0,c.width,c.height).data,c.width,c.height);if(r&&r.data)onQR(r.data)}setTimeout(tick,200)})()}
+ catch(e){m.textContent='Autorisez l’accès à la caméra pour scanner.'}}
+function stopCam(){if(cam){cam.run=false;cam.st.getTracks().forEach(t=>t.stop());cam=null}}
+/* ---------- Vues ---------- */
+const prof=w=>[['Identifiant',w.id],['Téléphone',w.ph],['Adresse',w.ad||'—'],['Email',w.em||'—'],['Genre',w.ge==='F'?'Femme':'Homme'],['Responsabilité',w.rs],['Ministères',mn(w)],['Baptême',w.by||'—'],['Statut',ST[w.st]]].map(([k,v])=>`<div class="card row" style="padding:10px 14px"><span class="mu" style="flex:1">${k}</span><b>${esc(v)}</b></div>`).join('');
+const progList=adm=>[...D.programs].sort((a,b)=>b.at-a.at).map(p=>`<div class="card row"><div style="flex:1"><b>${esc(p.t)}</b><div class="mu">${esc(p.ty)} · ${dt(p.at)}${p.pl?' · '+esc(p.pl):''}</div></div>${p.act?'<span class="ch ok">EN COURS</span>':''}${adm?`<div style="display:flex;flex-direction:column;gap:4px;text-align:right">${p.act?'':`<a data-a="actv" data-id="${p.id}">Activer</a>`}<a data-a="newp" data-id="${p.id}">Modifier</a><a data-a="delp" data-id="${p.id}" style="color:var(--ko)">Supprimer</a></div>`:''}</div>`).join('')||'<p class="mu c">Aucun programme pour le moment.</p>';
+const wl=()=>{const q=(T.q||'').toLowerCase(),f=T.f||'TOUS';return D.workers.filter(w=>(f==='TOUS'||w.st===f)&&(!q||(w.fn+' '+w.ln+' '+w.id+' '+w.ph).toLowerCase().includes(q))).map(w=>`<div class="card"><div class="row"><div class="av">${ini(w)}</div><div style="flex:1"><b>${nm(w)}</b><div class="mu">${w.id} · ${esc(w.rs)}</div></div><span class="ch ${SC[w.st]}">${ST[w.st]}</span></div><div class="row" style="margin-top:8px;gap:12px"><select data-c="st" data-id="${w.id}" style="margin:0">${Object.entries(ST).map(([k,v])=>`<option value="${k}"${k===w.st?' selected':''}>${v}</option>`).join('')}</select><a data-a="card" data-id="${w.id}">Carte</a><a data-a="exc" data-id="${w.id}">Excusé</a><a data-a="editp" data-id="${w.id}">Modifier</a><a data-a="delw" data-id="${w.id}" style="color:var(--ko)">Suppr.</a></div></div>`).join('')||'<p class="mu c">Aucun ouvrier trouvé.</p>'};
+const mn=w=>(w.mis||[]).join(', ')||'—',mn0=w=>(w.mis||[]).join(' · ')||'Aucun ministère',allMin=()=>[...new Set([...MIN,...D.mins])];
+const addMin=m=>{if(m&&!allMin().some(x=>x.toLowerCase()===m.toLowerCase())){D.mins.push(m)}};
+const mchips=()=>(T.rm||[]).map((m,i)=>`<span class="ch">${esc(m)} <a data-a="delm" data-i="${i}">×</a></span>`).join('')||'<span class="mu">Aucun ministère ajouté</span>';
+const addRm=m=>{T.rm=T.rm||[];if(m&&!T.rm.some(x=>x.toLowerCase()===m.toLowerCase()))T.rm.push(m);const e=$('#mch');e&&(e.innerHTML=mchips())};
+const lt=ms=>new Date(ms-new Date().getTimezoneOffset()*6e4).toISOString().slice(0,16);
+const fc=n=>String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g,' ')+' FCFA';
+const paid=c=>c.pm.reduce((s,p)=>s+p.a,0);
+const mField=()=>`<div class="card" style="padding:10px;text-align:left"><b>Ministère d’appartenance</b><div id="mch" class="chs">${mchips()}</div><select id="mi" data-c="msel"><option value="">Choisir un ministère…</option>${allMin().map(m=>`<option>${esc(m)}</option>`).join('')}</select><div class="row"><input id="mn" placeholder="Ou ajoutez-en un manuellement" style="margin:0;flex:1"><button class="btn" style="width:56px;margin:0" data-a="addm">${I('plus')}</button></div></div>`;
+const rField=v=>`<input id="rs" list="rl" value="${esc(v)}" placeholder="Responsabilité dans l’église"><datalist id="rl">${RESP.map(m=>`<option>${m}</option>`).join('')}</datalist>`;
+const minCard=()=>`<div class="card"><b>Ministères</b><div class="chs">${allMin().map(m=>`<span class="ch">${esc(m)} (${D.workers.filter(w=>(w.mis||[]).includes(m)).length})</span>`).join('')}</div><div class="row"><input id="gm" placeholder="Nouveau ministère" style="margin:0;flex:1"><button class="btn" style="width:56px;margin:0" data-a="addgm">${I('plus')}</button></div></div>`;
+const setCard=()=>`<div class="card"><b>Paramètres de l’église</b><input id="cn" value="${esc(D.church.name)}" placeholder="Nom officiel"><button class="btn o" data-a="savec">Enregistrer le nom</button><div class="row"><button class="btn o" style="flex:1" data-a="exp">Sauvegarder</button><button class="btn o" style="flex:1" data-a="imp">Restaurer</button></div><input id="fi" type="file" accept=".json" hidden></div>`;
+const payView=()=>`<button class="btn" data-a="newc">${I('plus')} Nouvelle cotisation</button>`+(D.pay.map(c=>{const w=D.workers.find(x=>x.id===c.w),p=paid(c),k=p>=c.amt?['Payé','ok']:p>0?['Partiel','wa']:['Non payé','ko'];return `<div class="card"><div class="row"><div style="flex:1"><b>${esc(c.ty)}</b><div class="mu">${w?nm(w):'—'}</div></div><span class="ch ${k[1]}">${k[0]}</span></div><div class="bar"><i style="width:${Math.min(100,p/c.amt*100)}%"></i></div><div class="mu">${fc(p)} / ${fc(c.amt)} · reste ${fc(Math.max(0,c.amt-p))}</div>${c.pm.map((x,i)=>`<div class="row mu" style="margin-top:4px"><span style="flex:1">${new Date(x.t).toLocaleDateString('fr-FR')} · ${fc(x.a)} · ${esc(x.m)}</span><a data-a="rec" data-id="${c.id}" data-i="${i}">Reçu PDF</a></div>`).join('')}${p<c.amt?`<button class="btn o" data-a="newv" data-id="${c.id}">+ Versement</button>`:''}</div>`}).join('')||'<p class="mu c">Aucune cotisation enregistrée.</p>');
+const VIEWS={
+splash:()=>`<div class="scr dk"><div class="big">${I('church')}</div><h1>GestÉglise <span class="ch pr">Pro</span></h1><p>Gérer aujourd’hui<br>pour servir demain</p></div>`,
+role(){const k=(r,t,s,c)=>`<div class="rc ${c} ${D.space&&D.space!==r?'lock':''}" data-a="pick" data-r="${r}"><div><b>${t}</b><small>${s}</small></div>${D.space&&D.space!==r?I('lock'):''}</div>`;
+ return `<div class="scr"><div class="bd c" style="padding-top:44px"><div class="big">${I('church')}</div><h1>GestÉglise <span class="ch pr">Pro</span></h1><p><b>Sélectionnez votre espace</b></p>${D.space?`<p class="mu">Espace de ce téléphone : ${SPN[D.space]}</p>`:''}${k('w','Ouvrier / Ouvrière','Accéder à votre espace','b')}${k('a','Administrateur','Gérer l’église et les membres','c')}${k('s','Super Admin','Accès total et gestion des codes','n')}${DP?'<button class="btn o" data-a="inst">Installer l’application</button>':''}</div></div>`},
+wlogin:()=>`<div class="scr">${hd('Espace Ouvrier')}<div class="bd c"><div class="big">${I('user')}</div><h2>Connexion Ouvrier</h2><p class="mu">Accédez à votre profil avec votre identifiant (ex : WORKER-440085) ou votre numéro de téléphone</p><div class="card" style="text-align:left"><input id="q" placeholder="Identifiant ou téléphone" autocomplete="off"><div class="er" id="er"></div><button class="btn" data-a="wlogin">Se connecter</button></div><p>Vous n’êtes pas encore inscrit ? <a data-a="toreg">S’inscrire</a></p></div></div>`,
+wreg:()=>`<div class="scr">${hd(T.adm?'Nouvel ouvrier':'Espace Ouvrier')}<div class="bd"><h2 class="c">Inscription d’un Ouvrier</h2><div class="card"><input id="fn" placeholder="Prénom *"><input id="ln" placeholder="Nom *"><input id="ph" type="tel" placeholder="Numéro de téléphone *"><input id="ad" placeholder="Adresse / quartier"><input id="em" type="email" placeholder="Email (optionnel)"><select id="ge"><option value="H">Homme</option><option value="F">Femme</option></select>${mField()}${rField('Membre actif')}<input id="by" type="number" placeholder="Année de baptême" min="1900" max="${new Date().getFullYear()}"><div class="er" id="er"></div><button class="btn" data-a="wreg">Créer mon compte et générer mon QR Code</button></div>${T.adm?'':'<p class="c">Déjà inscrit ? <a data-a="back">Se connecter</a></p>'}</div></div>`,
+whome(){const w=me();if(!w)return '<div class="scr"></div>';const t=T.wt||'qr';
+ const c=t==='qr'?`<h3>Mon QR Code</h3><div class="card qrc"><b>${nm(w)}</b><div class="mu">${esc(mn0(w))} · ${esc(w.rs)}</div><div id="qr" class="qrb"></div><code>${w.id}</code></div><p class="mu c">Présentez ce badge à l’accueil pour pointer votre présence.</p>`:t==='prog'?`<h3>Programmes</h3>${progList()}`:`<h3>Mon profil</h3>${prof(w)}<button class="btn" data-a="editp">Modifier mes informations</button><button class="btn o" data-a="out">Se déconnecter</button>`;
+ return `<div class="scr">${hd(nm(w),0)}<div class="bd">${c}</div>${nav([['qr','Mon QR Code','qr'],['prog','Programmes','cal'],['prof','Mon profil','user']],t,'tabw')}</div>`},
+alogin:()=>`<div class="scr">${hd('Espace Administrateur')}<div class="bd c"><div class="big">${I('users')}</div><h2>Connexion Administrateur</h2><p class="mu">Entrez le code d’accès temporaire fourni par le Super Admin (ex : GE-XXXX-XXXX)</p><div class="card" style="text-align:left"><input id="q" placeholder="GE-XXXX-XXXX" autocapitalize="characters" autocomplete="off"><div class="er" id="er"></div><button class="btn" data-a="alogin">Se connecter</button></div></div></div>`,
+ahome(){const t=T.at||'home',ap=D.programs.find(p=>p.act);let c;
+ if(t==='home')c=`<div class="card hero"><b>Administrateur</b><div>${ap?'Programme actif : '+esc(ap.t):'Aucun programme actif'}</div></div><div class="g2"><div class="card ct"><div class="n">${D.workers.length}</div>Ouvriers</div><div class="card ct"><div class="n">${ap?D.att.filter(a=>a.p===ap.id).length:0}</div>Présents</div></div><div class="card ct"><div class="n" style="font-size:22px">${fc(D.pay.reduce((s,c)=>s+paid(c),0))}</div>Fonds collectés</div><button class="btn" data-a="rap">Rapport PDF</button>${minCard()}${setCard()}<button class="btn o" data-a="out">Se déconnecter</button>`;
+ else if(t==='list')c=`<div class="row"><input id="q" placeholder="Rechercher (nom, code, téléphone)" value="${esc(T.q||'')}"><button class="btn" style="width:56px;margin:0" data-a="newW">${I('plus')}</button></div><div class="chs">${[['TOUS','Tous'],...Object.entries(ST)].map(([k,v])=>`<span class="ch ${(T.f||'TOUS')===k?'on':''}" data-a="flt" data-k="${k}">${v}</span>`).join('')}</div><div id="wl">${wl()}</div>`;
+ else if(t==='prog')c=`<button class="btn" data-a="newp">${I('plus')} Nouveau programme</button>${progList(1)}`;
+ else if(t==='pay')c=payView();
+ else c=`<h3>Scanner les présences</h3><div class="cam"><video id="vid" playsinline muted></video><div class="fr"><i></i></div></div><p class="mu c" id="cm">Positionnez le QR code dans le cadre</p><div id="fb"></div>`;
+ return `<div class="scr">${hd('Administration',0)}<div class="bd">${c}</div>${nav([['home','Accueil','church'],['list','Ouvriers','users'],['prog','Programmes','cal'],['pay','Caisse','wallet'],['scan','Scanner','scan']],t,'taba')}</div>`},
+spin:()=>`<div class="scr">${hd('Super Admin')}<div class="bd c"><div class="big">${I('shield')}</div><h2>${D.pin?'Authentification Super Admin':'Créer le PIN maître'}</h2><p class="mu">${D.pin?'Entrez le code PIN maître':'Choisissez un PIN d’au moins 5 chiffres. Gardez-le précieusement.'}</p><div class="card" style="text-align:left"><input id="q" type="password" inputmode="numeric" placeholder="Code PIN maître" autocomplete="off">${D.pin?'':'<input id="q2" type="password" inputmode="numeric" placeholder="Confirmer le PIN">'}<div class="er" id="er"></div><button class="btn" data-a="pin">${D.pin?'Vérifier et continuer':'Créer et continuer'}</button></div></div></div>`,
+scodes:()=>`<div class="scr">${hd('Gestion des codes')}<div class="bd"><div class="card"><b>Générer un code administrateur</b><div class="chs">${['1 jour','1 semaine','1 mois','Permanent'].map((d,i)=>`<span class="ch ${(T.d??1)===i?'on':''}" data-a="dur" data-k="${i}">${d}</span>`).join('')}</div><button class="btn" data-a="gen">${I('key')} Générer le code</button></div>${D.codes.map(c=>{const[s,k]=cs(c);return `<div class="card row"><div style="flex:1"><b>${c.c}</b><div class="mu">${c.exp?'Expire le '+new Date(c.exp).toLocaleDateString('fr-FR'):'Permanent'} · ${c.u}/${c.max||'∞'} utilisations</div></div><span class="ch ${k}">${s}</span><a data-a="copy" data-c="${c.c}">Copier</a>${s==='Actif'?`<a data-a="rev" data-c="${c.c}" style="color:var(--ko)">Révoquer</a>`:''}</div>`}).join('')||'<p class="mu c">Aucun code généré.</p>'}</div></div>`};
+/* ---------- Actions ---------- */
+const val=id=>($('#'+id)||{value:''}).value.trim(),err=m=>{const e=$('#er');e&&(e.textContent=m)};
+const open=r=>go(r==='w'?'wlogin':r==='a'?'alogin':'spin');
+const act={back,x(){const m=$('.mod');m&&m.remove()},inst(){DP&&DP.prompt()},
+pick(b){const r=b.dataset.r;if(D.space===r)return open(r);if(D.space)return;modal(`<h3>Confirmer votre espace ?</h3><p class="mu">Ce choix est définitif sur ce téléphone : les autres espaces seront verrouillés, même après un redémarrage.</p><button class="btn" data-a="ok" data-r="${r}">Confirmer</button>`)},
+ok(b){D.space=b.dataset.r;save();act.x();open(D.space)},
+toreg(){go('wreg',{t:{adm:0,rm:[]}})},newW(){go('wreg',{t:{adm:1,rm:[]}})},
+wlogin(){const q=val('q'),w=D.workers.find(x=>x.id===q.toUpperCase()||x.ph===q);if(!q)return err('Saisissez votre identifiant ou téléphone');if(!w)return err('Aucun ouvrier trouvé. Inscrivez-vous d’abord.');if(w.st==='INACTIF')return err('Ce compte est inactif. Contactez l’administrateur.');D.sess={r:'w',id:w.id};save();reset('whome',{wt:'qr'})},
+wreg(){const w={fn:val('fn'),ln:val('ln'),ph:val('ph'),ad:val('ad'),em:val('em'),ge:val('ge'),mis:[...(T.rm||[]),...(val('mn')?[val('mn')]:[])],rs:val('rs')||'Membre actif',by:val('by'),st:'ACTIF'},y=+w.by;
+ if(!w.fn)return err('Le prénom est obligatoire');if(!w.ln)return err('Le nom est obligatoire');if(w.ph.replace(/\D/g,'').length<8)return err('Numéro de téléphone invalide');
+ if(w.by&&(y<1900||y>new Date().getFullYear()))return err('Année invalide');if(D.workers.some(x=>x.ph===w.ph))return err('Ce numéro est déjà inscrit');
+ do{w.id='WORKER-'+(100000+Math.floor(Math.random()*900000))}while(D.workers.some(x=>x.id===w.id));w.mis.forEach(addMin);D.workers.push(w);
+ if(T.adm){save();T.at='list';back();return}D.sess={r:'w',id:w.id};save();reset('whome',{wt:'qr'})},
+alogin(){const c=val('q').toUpperCase(),x=D.codes.find(k=>k.c===c);if(!x)return err('Code invalide');if(x.rev)return err('Ce code a été révoqué');if(x.exp&&Date.now()>x.exp)return err('Ce code a expiré');if(x.max&&x.u>=x.max)return err('Nombre d’utilisations atteint');
+ x.u++;D.sess={r:'a',code:c};save();reset('ahome',{at:'home'})},
+async pin(){const p=val('q'),n=Date.now();if(!D.pin){if(p.length<5)return err('Au moins 5 chiffres');if(p!==val('q2'))return err('Les deux PIN ne correspondent pas');const s=rnd(8);D.pin={s,h:await pbk(p,s)};save();return reset('scodes')}
+ if(n<lockUntil)return err('Trop d’essais. Réessayez dans '+Math.ceil((lockUntil-n)/1000)+' s');
+ if(await pbk(p,D.pin.s)===D.pin.h){tries=0;return reset('scodes')}if(++tries>=5){tries=0;lockUntil=n+30000}err('PIN incorrect')},
+dur(b){T.d=+b.dataset.k;draw()},
+gen(){const A='ABCDEFGHJKLMNPQRSTUVWXYZ23456789',r=k=>[...crypto.getRandomValues(new Uint8Array(k))].map(x=>A[x%A.length]).join(''),d=[1,7,30,null][T.d??1];D.codes.unshift({c:`GE-${r(4)}-${r(4)}`,exp:d?Date.now()+d*864e5:null,max:10,u:0,rev:false});save();draw()},
+rev(b){const c=D.codes.find(x=>x.c===b.dataset.c);c&&(c.rev=true);save();draw()},copy(b){try{navigator.clipboard.writeText(b.dataset.c);b.textContent='Copié ✓'}catch(e){}},
+tabw(b){T.wt=b.dataset.k;draw()},taba(b){T.at=b.dataset.k;draw()},flt(b){T.f=b.dataset.k;draw()},
+card(b){const w=D.workers.find(x=>x.id===b.dataset.id);modal(`<div class="av" style="margin:auto">${ini(w)}</div><h3>${nm(w)}</h3><div class="mu">${esc(mn0(w))} · ${esc(w.rs)}</div><div id="qm" class="qrb"></div><code>${w.id}</code>`);qrTo('#qm',w.id)},
+exc(b){const p=D.programs.find(x=>x.act);if(!p)return toast('Aucun programme actif');if(D.att.some(a=>a.p===p.id&&a.w===b.dataset.id))return toast('Déjà pointé pour ce programme');D.att.push({p:p.id,w:b.dataset.id,st:'EXCUSED',t:Date.now()});save();toast('Marqué excusé pour « '+p.t+' »')},
+actv(b){D.programs.forEach(p=>p.act=p.id===+b.dataset.id);save();draw()},
+
+addm(){addRm(val('mn'));const e=$('#mn');e&&(e.value='')},delm(b){T.rm.splice(+b.dataset.i,1);const e=$('#mch');e&&(e.innerHTML=mchips())},
+addgm(){const v=val('gm');if(!v)return;addMin(v);save();draw()},
+editp(b){const w=b.dataset&&b.dataset.id?D.workers.find(x=>x.id===b.dataset.id):me();T.eid=w.id;T.rm=[...(w.mis||[])];
+ modal(`<h3>Modifier les informations</h3><div style="text-align:left"><b>${nm(w)}</b><input id="ad" placeholder="Adresse / quartier" value="${esc(w.ad)}"><input id="em" type="email" placeholder="Email" value="${esc(w.em)}">${rField(w.rs)}<input id="by" type="number" placeholder="Année de baptême" value="${esc(w.by)}">${mField()}<div class="er" id="er"></div><button class="btn" data-a="savep">Enregistrer</button></div>`)},
+savep(){const w=D.workers.find(x=>x.id===T.eid),y=+val('by');if(val('by')&&(y<1900||y>new Date().getFullYear()))return err('Année invalide');
+ w.ad=val('ad');w.em=val('em');w.rs=val('rs')||'Membre actif';w.by=val('by');w.mis=[...T.rm,...(val('mn')?[val('mn')]:[])];w.mis.forEach(addMin);save();act.x();draw();toast('Informations mises à jour')},
+delw(b){modal(`<p>Supprimer cet ouvrier et ses présences ?</p><button class="btn" style="background:var(--ko)" data-a="delw2" data-id="${b.dataset.id}">Supprimer</button>`)},
+delw2(b){const id=b.dataset.id;D.workers=D.workers.filter(w=>w.id!==id);D.att=D.att.filter(a=>a.w!==id);D.pay=D.pay.filter(c=>c.w!==id);save();act.x();draw()},
+newp(b){const p=D.programs.find(x=>x.id===+(b.dataset&&b.dataset.id));
+ modal(`<h3>${p?'Modifier le':'Nouveau'} programme</h3><div style="text-align:left"><input id="pt" placeholder="Titre" value="${esc(p?p.t:'')}"><select id="py">${['Culte dominical','Veillée de prière','Réunion des ouvriers','Séminaire','Étude biblique','Conférence'].map(t=>`<option${p&&p.ty===t?' selected':''}>${t}</option>`).join('')}</select><input id="pd" type="datetime-local" value="${lt(p?p.at:Date.now()+864e5)}"><input id="pl" placeholder="Lieu" value="${esc(p?p.pl:'')}"><input id="ps" placeholder="Orateur / responsable" value="${esc(p&&p.sp||'')}"><div class="er" id="er"></div><button class="btn" data-a="addp" data-id="${p?p.id:''}">Enregistrer</button></div>`)},
+addp(b){const t=val('pt'),d=val('pd');if(!t||!d)return err('Le titre et la date sont obligatoires');const at=new Date(d).getTime(),id=+b.dataset.id,p=D.programs.find(x=>x.id===id);
+ if(p)Object.assign(p,{t,ty:val('py'),at,pl:val('pl'),sp:val('ps')});else D.programs.push({id:Date.now(),t,ty:val('py'),at,pl:val('pl'),sp:val('ps'),act:false});save();act.x();draw();toast('Programme enregistré')},
+delp(b){modal(`<p>Supprimer ce programme et ses présences ?</p><button class="btn" style="background:var(--ko)" data-a="delp2" data-id="${b.dataset.id}">Supprimer</button>`)},
+delp2(b){const id=+b.dataset.id;D.programs=D.programs.filter(p=>p.id!==id);D.att=D.att.filter(a=>a.p!==id);save();act.x();draw()},
+newc(){modal(`<h3>Nouvelle cotisation</h3><div style="text-align:left"><select id="cw">${D.workers.map(w=>`<option value="${w.id}">${nm(w)}</option>`).join('')}</select><select id="ct">${['Dîme pastorale','Offrande de construction','Cotisation de département','Don d’amour','Soutien missionnaire'].map(t=>`<option>${t}</option>`).join('')}</select><input id="ca" type="number" inputmode="numeric" placeholder="Montant attendu (FCFA)"><div class="er" id="er"></div><button class="btn" data-a="savecon">Créer</button></div>`)},
+savecon(){const a=+val('ca');if(!val('cw'))return err('Aucun ouvrier inscrit');if(!(a>0))return err('Montant invalide');D.pay.unshift({id:Date.now(),w:val('cw'),ty:val('ct'),amt:a,pm:[]});save();act.x();draw()},
+newv(b){const c=D.pay.find(x=>x.id===+b.dataset.id);modal(`<h3>Enregistrer un versement</h3><div style="text-align:left"><p class="mu">Reste à payer : ${fc(c.amt-paid(c))}</p><input id="va" type="number" inputmode="numeric" placeholder="Montant (FCFA)"><select id="vm">${['Espèces','Wave','Orange Money','MTN Mobile Money','Moov Money','Virement bancaire'].map(t=>`<option>${t}</option>`).join('')}</select><input id="vr" placeholder="Référence (optionnel)"><div class="er" id="er"></div><button class="btn" data-a="savev" data-id="${c.id}">Enregistrer</button></div>`)},
+savev(b){const c=D.pay.find(x=>x.id===+b.dataset.id),a=+val('va');if(!(a>0)||a>c.amt-paid(c))return err('Montant invalide (max : '+fc(c.amt-paid(c))+')');
+ c.pm.push({a,m:val('vm'),r:val('vr'),t:Date.now(),n:'REC-'+new Date().getFullYear()+'-'+String(D.pay.reduce((s,x)=>s+x.pm.length,0)+1).padStart(4,'0')});save();act.x();draw();toast('Versement enregistré — reçu disponible')},
+rec(b){const c=D.pay.find(x=>x.id===+b.dataset.id),i=+b.dataset.i,p=c.pm[i],w=D.workers.find(x=>x.id===c.w);if(!window.jspdf)return toast('PDF indisponible : connexion requise à la 1re ouverture');
+ const J=new jspdf.jsPDF(),so=c.pm.slice(0,i+1).reduce((s,x)=>s+x.a,0);J.setFillColor(11,31,77);J.rect(0,0,210,32,'F');J.setTextColor(255);J.setFontSize(18);J.text(D.church.name,14,15);J.setFontSize(10);J.text('REÇU DE PAIEMENT',14,25);
+ J.setTextColor(0);J.setFontSize(11);[['Reçu N°',p.n],['Date',new Date(p.t).toLocaleString('fr-FR')],['Donateur',w?w.fn+' '+w.ln:'—'],['Objet',c.ty],['Mode de paiement',p.m],['Référence',p.r||'—'],['Montant attendu',fc(c.amt)],['Montant réglé',fc(p.a)],['Total payé à ce jour',fc(so)],['Solde restant',fc(Math.max(0,c.amt-so))]].forEach((r,k)=>{J.setFont('helvetica','normal');J.text(r[0],14,50+k*10);J.setFont('helvetica','bold');J.text(String(r[1]),80,50+k*10)});
+ if(so>=c.amt){J.setTextColor(16,185,129);J.setFontSize(30);J.text('PAYÉ',140,155,{angle:12})}J.setTextColor(100);J.setFontSize(9);J.text('Signature et cachet du trésorier',130,185);J.line(130,200,196,200);J.text('Merci pour votre fidélité.',14,280);J.save(p.n+'.pdf')},
+rap(){if(!window.jspdf)return toast('PDF indisponible : connexion requise à la 1re ouverture');const J=new jspdf.jsPDF();let y=42;const ln=(t,b)=>{if(y>280){J.addPage();y=20}J.setFont('helvetica',b?'bold':'normal');J.setTextColor(0);J.setFontSize(b?13:10);J.text(String(t),14,y);y+=b?9:6.5};
+ J.setFillColor(11,31,77);J.rect(0,0,210,32,'F');J.setTextColor(255);J.setFontSize(18);J.text(D.church.name,14,15);J.setFontSize(10);J.text('RAPPORT D’ACTIVITÉS — '+new Date().toLocaleDateString('fr-FR'),14,25);
+ ln('Synthèse',1);ln('Ouvriers : '+D.workers.length+' (actifs : '+D.workers.filter(w=>w.st==='ACTIF').length+')');ln('Fonds collectés : '+fc(D.pay.reduce((s,c)=>s+paid(c),0)));y+=4;
+ ln('Présences par programme',1);D.programs.forEach(p=>{const a=D.att.filter(x=>x.p===p.id),n=k=>a.filter(x=>x.st===k).length;ln(dt(p.at)+' — '+p.t+' : '+n('PRESENT')+' présents, '+n('LATE')+' retards, '+n('EXCUSED')+' excusés')});y+=4;
+ ln('Effectif par ministère',1);allMin().forEach(m=>ln(m+' : '+D.workers.filter(w=>(w.mis||[]).includes(m)).length));y+=4;
+ ln('Cotisations',1);D.pay.forEach(c=>{const w=D.workers.find(x=>x.id===c.w);ln((w?w.fn+' '+w.ln:'—')+' — '+c.ty+' : '+fc(paid(c))+' / '+fc(c.amt))});J.save('rapport-'+Date.now()+'.pdf')},
+savec(){D.church.name=val('cn')||'Mon Église';save();toast('Nom enregistré')},
+exp(){const{sess,space,...r}=D,a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(r)],{type:'application/json'}));a.download='gesteglise-sauvegarde-'+new Date().toISOString().slice(0,10)+'.json';a.click()},
+imp(){$('#fi').click()},
+out(){D.sess=null;save();reset('role')}};
+document.addEventListener('click',e=>{const b=e.target.closest('[data-a]');b&&act[b.dataset.a]&&act[b.dataset.a](b)});
+document.addEventListener('change',e=>{if(e.target.dataset.c==='st'){const w=D.workers.find(x=>x.id===e.target.dataset.id);w.st=e.target.value;save();$('#wl').innerHTML=wl()}else if(e.target.dataset.c==='msel'&&e.target.value){addRm(e.target.value);e.target.value=''}else if(e.target.id==='fi'){imp(e.target.files[0])}});
+document.addEventListener('input',e=>{if(e.target.id==='q'&&V==='ahome'){T.q=e.target.value;$('#wl').innerHTML=wl()}});
+function imp(f){if(!f)return;const r=new FileReader();r.onload=()=>{try{const j=JSON.parse(r.result);if(!Array.isArray(j.workers)||!Array.isArray(j.programs))throw 0;Object.assign(D,j,{sess:D.sess,space:D.space});D.workers.forEach(w=>{if(!w.mis)w.mis=[]});save();draw();toast('Sauvegarde restaurée')}catch(e){toast('Fichier de sauvegarde invalide')}};r.readAsText(f)}
+/* ---------- Démarrage : session mémorisée jusqu'à la déconnexion ---------- */
+const s=D.sess;let ok=false;
+if(s&&s.r==='w'){const w=D.workers.find(x=>x.id===s.id);ok=!!w&&w.st!=='INACTIF'}if(s&&s.r==='a')ok=codeOK(s.code);
+if(ok)reset(s.r==='w'?'whome':'ahome',{wt:'qr',at:'home'});else{D.sess=null;save();draw();setTimeout(()=>{V==='splash'&&reset('role')},1800)}
+history.pushState({},'');try{'serviceWorker'in navigator&&navigator.serviceWorker.register('sw.js').catch(()=>{})}catch(e){}
+</script></body></html>
